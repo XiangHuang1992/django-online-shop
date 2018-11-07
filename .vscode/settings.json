@@ -1,4 +1,6 @@
 {
     "python.pythonPath": "/Users/ferdinand/.pyenv/versions/env_363_online_shop/bin/python",
-    "workbench.iconTheme": "eq-material-theme-icons-ocean"
+    "workbench.iconTheme": "eq-material-theme-icons-ocean",
+    "materialTheme.autoApplyIcons": true,
+    "workbench.colorTheme": "Dracula Soft"
 }
