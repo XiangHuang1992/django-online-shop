@@ -13,8 +13,7 @@ class ShoppingCart(models.Model):
     购物车
     """
     user = models.ForeignKey(User, verbose_name=u"用户", on_delete=models.CASCADE)
-    goods = models.ForeignKey(Goods, verbose_name=u"商品"
-    , on_delete=models.CASCADE)
+    goods = models.ForeignKey(Goods, verbose_name=u"商品", on_delete=models.CASCADE)
     nums = models.IntegerField(default=0, verbose_name="购买数量")
 
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
@@ -41,9 +40,12 @@ class OrderInfo(models.Model):
     )
 
     user = models.ForeignKey(User, verbose_name="用户", on_delete=models.CASCADE)
-    order_sn = models.CharField(max_length=30, null=True, blank=True, unique=True, verbose_name="订单号")
-    trade_no = models.CharField(max_length=100, unique=True, null=True, blank=True, verbose_name=u"交易号")
-    pay_status = models.CharField(choices=ORDER_STATUS, default="paying", max_length=30, verbose_name="订单状态")
+    order_sn = models.CharField(max_length=30, null=True, blank=True, unique=True,
+                                verbose_name="订单号")
+    trade_no = models.CharField(max_length=100, unique=True, null=True, blank=True,
+                                verbose_name=u"交易号")
+    pay_status = models.CharField(choices=ORDER_STATUS, default="paying", max_length=30,
+                                  verbose_name="订单状态")
     post_script = models.CharField(max_length=200, verbose_name="订单留言")
     order_mount = models.FloatField(default=0.0, verbose_name="订单金额")
     pay_time = models.DateTimeField(null=True, blank=True, verbose_name="支付时间")
@@ -62,11 +64,13 @@ class OrderInfo(models.Model):
     def __str__(self):
         return str(self.order_sn)
 
+
 class OrderGoods(models.Model):
     """
     订单的商品详情
     """
-    order = models.ForeignKey(OrderInfo, verbose_name="订单信息", related_name="goods", on_delete=models.CASCADE)
+    order = models.ForeignKey(OrderInfo, verbose_name="订单信息", related_name="goods",
+                              on_delete=models.CASCADE)
     goods = models.ForeignKey(Goods, verbose_name="商品", on_delete=models.CASCADE)
     goods_num = models.IntegerField(default=0, verbose_name="商品数量")
 
