@@ -13,6 +13,7 @@ from .serializers import GoodsSerializer
 
 from .models import Goods
 from .pagination import GoodListPagination
+from .filters import GoodsFilter
 # Create your views here.
 
 
@@ -21,4 +22,5 @@ class GoodsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = GoodsSerializer
     pagination_class = GoodListPagination
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('category',)
+    # filter_fields = ('category',)
+    filter_class = GoodsFilter
