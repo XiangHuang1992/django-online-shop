@@ -27,6 +27,9 @@ SECRET_KEY = 'jz50w%e6^-11g6u)b18x9nc9ldxd-3pn*c&ywtq%%ag5f4h$xo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -45,14 +48,18 @@ INSTALLED_APPS = [
     'goods.apps.GoodsConfig',
     'trade.apps.TradeConfig',
     'user_operation.apps.UserOperationConfig',
+    'corsheaders',  # 解决跨域问题
     'rest_framework',
     'xadmin',
     'crispy_forms',
     'reversion',
-    'django_filters'
+    'django_filters',
+    'rest_framework.authtoken'
     ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -94,6 +101,11 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # 'PAGE_SIZE': 100
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
 }
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -150,6 +162,9 @@ USE_L10N = True
 
 USE_TZ = False
 
+AUTHENTICATION_CLASS = (
+    'users.views.CustomBackend',
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

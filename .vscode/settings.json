@@ -1,6 +1,24 @@
 {
-    "python.pythonPath": "/Users/ferdinand/.pyenv/versions/env_363_online_shop/bin/python",
-    "workbench.iconTheme": "eq-material-theme-icons-ocean",
+    "python.pythonPath": ".venv/bin/python",
+    "workbench.iconTheme": "eq-material-theme-icons-light",
     "materialTheme.autoApplyIcons": true,
-    "workbench.colorTheme": "Dracula Soft"
+    "workbench.colorTheme": "Solarized Light",
+    "python.linting.pylintEnabled": true,
+    "python.autoComplete.extraPaths": [
+        "~/.pyenv/versions/3.6.3/envs/env_363_online_shop/lib/python3.6/site-packages"
+    ],
+    "editor.tabCompletion": "on",
+    "python.linting.flake8Enabled": true,
+    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "terminal.integrated.enableBell": true,
+    "terminal.integrated.rendererType": "canvas",
+    "materialTheme.accent": "Tomato",
+    "python.unitTest.pyTestArgs": [
+        "apps"
+    ],
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.pyTestEnabled": true
 }

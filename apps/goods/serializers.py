@@ -12,7 +12,25 @@ from rest_framework import serializers
 from .models import Goods, GoodsCategory
 
 
+class CategorySerializer3(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsCategory
+        fields = "__all__"
+
+
+class CategorySerializer2(serializers.ModelSerializer):
+    sub_cat = CategorySerializer3(many=True)
+
+    class Meta:
+        model = GoodsCategory
+        fields = "__all__"
+
+
 class CategorySerializer(serializers.ModelSerializer):
+    """
+    商品类别
+    """
+    sub_cat = CategorySerializer2(many=True)
 
     class Meta:
         model = GoodsCategory
@@ -32,7 +50,8 @@ class GoodsSerializer(serializers.ModelSerializer):
     #
     # def update(self, instance, validated_data):
     #     instance.name = validated_data.get('name', instance.name)
-    #     instance.click_num = validated_data.get('click_num', instance.click_num)
+    #     instance.click_num = validated_data.get('click_num',
+    #                                            instance.click_num)
     #     instance.sold_num = validated_data.get('sold_num', instance.sold_num)
     #     instance.save()
     #     return instance
